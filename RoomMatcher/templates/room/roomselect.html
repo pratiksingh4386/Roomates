@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<h1> This is room selection page</h1>
+<div class="display">
+    <div class="row">
+        {% for room  in rooms %}
+        <div class="card mx-2 my-4 col-6" style="width: 14rem;">
+        <div class="card-body">
+          <h5 class="card-title text-center">{{room.room_no}}</h5>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Status : {{room.is_available}} </li>
+            {% if room.student1 %}
+            <li class="list-group-item">Name : {{room.student1}} </li>
+            <li class="list-group-item">Name : {{room.student2}} </li>
+            {% endif %}
+
+        </ul>
+        <div class="card-body">
+    
+          <a href={% url 'roomconfirm' room.room_no %}  class="card-link">Confirm room</a>
+          {% comment %} <a href="#" class="card-link">Request</a> {% endcomment %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    </div>
+
+
+{% endblock body %}
